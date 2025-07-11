@@ -4,7 +4,8 @@ import "./globals.css";
 import AppSidebar from "@/components/AppSidebar";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import HomePage from "./page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +40,8 @@ export default function RootLayout({
         >
           <SidebarProvider>
             <AppSidebar />
-            <main className="w-full">
+            <main className="w-full px-10">
+              <SidebarTrigger />
               <Navbar />
               <div className="px-4">{children}</div>
             </main>

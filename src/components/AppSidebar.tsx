@@ -1,4 +1,5 @@
-import { Home, Inbox, Calendar, Search, Settings, Sidebar } from "lucide-react";
+"use client";
+import { Home, Inbox, Calendar, Search, Settings } from "lucide-react";
 import {
   SidebarContent,
   SidebarFooter,
@@ -9,6 +10,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  Sidebar,
 } from "./ui/sidebar";
 import Link from "next/link";
 
@@ -39,10 +41,10 @@ const items = [
     icon: Settings,
   },
 ];
-const AppSidebar = () => {
+export function AppSidebar () {
   return (
     <Sidebar>
-      {/* <SidebarHeader></SidebarHeader>
+      <SidebarHeader></SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
@@ -51,9 +53,9 @@ const AppSidebar = () => {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <Link href={item.url}>
+                    <Link href={item?.url}>
                       <item.icon />
-                      <span>{item.title}</span>
+                      <span>{item?.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -62,7 +64,7 @@ const AppSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter></SidebarFooter> */}
+      <SidebarFooter></SidebarFooter>
     </Sidebar>
   );
 };
