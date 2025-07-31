@@ -12,7 +12,7 @@ const PostForm = () => {
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <Link href="/post" className="text-blue-500 hover:underline">
-            You got something in mind? Create Post
+            You've got something in mind? Create Post
           </Link>
         </div>
       </Card>
