@@ -14,7 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 const Stories = () => {
   return (
     <>
-    <h2>Stories</h2>
+    <h2 className="mb-10">Stories</h2>
     <Carousel className="lg:max-w-[800px] ">
       <CarouselContent className="">
         {images.map((img) => (
@@ -23,8 +23,9 @@ const Stories = () => {
             className="pl-4 md:basis-1/3 basis-1/3 lg:basis-1/5 "
           >
             <div className="p-1">
-              <Card className="p-0 rounded-lg shadow-emerald-950">
-                <CardContent className="overflow-hidden rounded-lg flex aspect-square  relative p-0 bg-gradient-to-b">
+              <Card className="p-0  rounded-full lg:rounded-lg shadow-emerald-950">
+               
+                <CardContent className="overflow-hidden rounded-full lg:rounded-lg flex aspect-square  relative p-0 bg-gradient-to-b">
                   <Image
                     src={img.src}
                     alt={img.alt}
@@ -32,11 +33,11 @@ const Stories = () => {
                     className="object-cover hover:scale-110 transition-transform "
                   />
                   
-                  <div className="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-black/70 to-transparent z-10" />
+                  <div className="hidden lg:block absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-black/70 to-transparent z-10" />
                    <p className="absolute bottom-0 left-2 text-white z-20" >{img.user}</p>
                  
-                  <div className="absolute top-3 left-3 z-10">
-                    <Avatar className="h-10 w-10 border-3 p-1 rounded-full text-white border-green-700 shadow-md">
+                  <div className="absolute top-3 left-3 z-10 hidden lg:block ">
+                    <Avatar className="h-10 w-10 border-3 p-1 rounded-full text-white border-green-700 shadow-md  ">
                       <AvatarImage src={img.avatar} alt={img.alt} />
                       <AvatarFallback>{img.opt}</AvatarFallback>
                     </Avatar>

@@ -40,10 +40,10 @@ export default function RootLayout({
         >
           <SidebarProvider>
             <AppSidebar />
-            <main className="w-full px-10">
+            <main className="sm:w-full lg:px-10">
               <SidebarTrigger />
               <Navbar />
-              <div className="px-4">{children}</div>
+              <div className="px-2 lg:px-4">{children}</div>
             </main>
           </SidebarProvider>
         </ThemeProvider>
