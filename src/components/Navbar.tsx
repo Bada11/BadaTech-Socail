@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { LogOut, Moon, Settings, Sun, User } from "lucide-react";
+import { LogIn, LogOut, Moon, Settings, Sun, User } from "lucide-react";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -13,9 +13,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
 import { useTheme } from "next-themes";
+import { login, logout } from "@/lib/actions/auth";
 
-const Navbar = () => {
-  const {theme, setTheme} = useTheme();
+const Navbar = ({ session }: { session: any }) => {
+  const { theme, setTheme } = useTheme();
   return (
     <nav className="p-4 flex item-center justify-between">
       CustomButton
@@ -45,25 +46,42 @@ const Navbar = () => {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage
+                src={session?.user?.image ?? ""}
+                alt={session?.user?.name ?? "Avatar"}
+              />
+              <AvatarFallback>
+                {session?.user?.name?.charAt(0) ?? "AB"}
+              </AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent sideOffset={10}>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <User className="h-[1.2rem] w-[1.2rem] mr-2" />
-              Profile
-            </DropdownMenuItem>
+            <Link href="/profile">
+              <DropdownMenuItem>
+                <User className="h-[1.2rem] w-[1.2rem] mr-2" />
+                Profile
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuItem>
               <Settings className="h-[1.2rem] w-[1.2rem] mr-2" />
               Settings
             </DropdownMenuItem>
-            <DropdownMenuItem variant="destructive">
-              <LogOut className="h-[1.2rem] w-[1.2rem] mr-2" />
-              Logout
-            </DropdownMenuItem>
+            {session?.user && (
+              <DropdownMenuItem variant="destructive" onClick={() => logout()}>
+                <LogOut className="h-[1.2rem] w-[1.2rem] mr-2" />
+                Logout
+              </DropdownMenuItem>
+            )}
+            {!session?.user && (
+              <Link href="/signup">
+              <DropdownMenuItem variant="default">
+                <LogIn className="h-[1.2rem] w-[1.2rem] mr-2" />
+                Login
+              </DropdownMenuItem>
+              </Link>
+            )}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

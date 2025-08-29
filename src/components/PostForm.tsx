@@ -3,6 +3,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Card } from "./ui/card";
 
 const PostForm = () => {
+  const loop = () => {
+    const arr: number[] = [1, 2, 3, 4, 5, 6];
+
+    for (let i = 0; i < arr.length; i++) {
+      console.log(i);
+    }
+  };
   return (
     <>
       <Card className="w-full lg:max-w-[800px]">
