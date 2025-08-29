@@ -1,4 +1,4 @@
-"use client";
+
 import { Home, Inbox, NotebookPen, Search, Settings } from "lucide-react";
 import {
   SidebarContent,
@@ -13,6 +13,8 @@ import {
   Sidebar,
 } from "./ui/sidebar";
 import Link from "next/link";
+import { SignOutButton } from "./sign-out-button";
+import { auth } from "@/auth";
 
 const items = [
   {
@@ -21,8 +23,8 @@ const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
+    title: "Profile",
+    url: "/profile",
     icon: Inbox,
   },
   {
@@ -41,7 +43,8 @@ const items = [
     icon: Settings,
   },
 ];
-export function AppSidebar () {
+export async function AppSidebar() {
+  const session = await auth();
   return (
     <Sidebar>
       <SidebarHeader></SidebarHeader>
@@ -64,9 +67,13 @@ export function AppSidebar () {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter></SidebarFooter>
+      {session?.user && (
+        <SidebarFooter>
+          <SignOutButton />
+        </SidebarFooter>
+      )}
     </Sidebar>
   );
-};
+}
 
 export default AppSidebar;
